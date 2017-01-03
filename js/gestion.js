@@ -1,47 +1,40 @@
 $(document).on("ready",function(){
-    
-   $('#formularioAgregarUsuario').css("display", "none"); 
-   $('#fieldsetFM').css("display", "none"); 
-   $('#formularioEliminarUsuario').css("display", "none"); 
+
+   $('#formularioAgregarUsuario').css("display", "none");
+   $('#fieldsetFM').css("display", "none");
+   $('#formularioEliminarUsuario').css("display", "none");
    $('#datosNuevos').css("display", "none");
-    
+
    $('#btnAgregar').on('click', function(){
        $('#formularioAgregarUsuario').toggle('slow');
-       $('#fieldsetFM').css("display", "none"); 
-       $('#formularioEliminarUsuario').css("display", "none"); 
+       $('#fieldsetFM').css("display", "none");
+       $('#formularioEliminarUsuario').css("display", "none");
    });
-   
+
    $('#btnModificar').on('click', function(){
        $('#fieldsetFM').toggle('slow');
-       $('#formularioAgregarUsuario').css("display", "none"); 
-       $('#formularioEliminarUsuario').css("display", "none"); 
+       $('#formularioAgregarUsuario').css("display", "none");
+       $('#formularioEliminarUsuario').css("display", "none");
    });
-   
+
    $('#btnEliminar').on('click', function(){
-       $('#formularioEliminarUsuario').toggle('slow'); 
-       $('#formularioAgregarUsuario').css("display", "none"); 
+       $('#formularioEliminarUsuario').toggle('slow');
+       $('#formularioAgregarUsuario').css("display", "none");
        $('#fieldsetFM').css("display", "none");
-   });  
-   
+   });
+
    redibujar();
-   
-   
-   
-   
-    
-    
-    
 });
 
 
 function insertarUsuario(){
-    
+
     $.ajax({
-                url: 'agregarUsuario.php',
+                url: 'funciones/agregarUsuario.php',
 		type: 'post',
 		data: $('#formularioAgregarUsuario').serialize(),
 		success: function(respUsuarios){
-                    $('#cuadroUsuarios').html(respUsuarios);                    
+                    $('#cuadroUsuarios').html(respUsuarios);
                     console.log(respUsuarios);
 		},
 		error: function(jqXHR,estado,error){
@@ -53,18 +46,18 @@ function insertarUsuario(){
                     rellenarSelectUsuario();
 		},
 		timeout:1000,
-                
+
 	})
 }
 
 function modificarUsuario(){
-    
+
     $.ajax({
-                url: 'modificarUsuario.php',
+                url: 'funciones/modificarUsuario.php',
 		type: 'post',
 		data: $('#formularioModificarUsuario').serialize(),
 		success: function(respUsuarios){
-                    $('#cuadroUsuarios').html(respUsuarios);                    
+                    $('#cuadroUsuarios').html(respUsuarios);
                     console.log(respUsuarios);
 		},
 		error: function(jqXHR,estado,error){
@@ -73,23 +66,23 @@ function modificarUsuario(){
 		},
 		complete: function(jqXHR,estado){
                     console.log(estado);
-                    rellenarSelectUsuario(); 
+                    rellenarSelectUsuario();
                     $('#datosMod').css("display", "none");
                     $('#datosNuevos').css("display", "none");
 		},
 		timeout:1000,
-                
+
 	})
 }
 
 function eliminarUsuario(){
-    
+
     $.ajax({
-                url: 'eliminarUsuario.php',
+                url: 'funciones/eliminarUsuario.php',
 		type: 'post',
 		data: $('#formularioEliminarUsuario').serialize(),
 		success: function(respUsuarios){
-                    $('#cuadroUsuarios').html(respUsuarios);                    
+                    $('#cuadroUsuarios').html(respUsuarios);
                     console.log(respUsuarios);
 		},
 		error: function(jqXHR,estado,error){
@@ -98,10 +91,10 @@ function eliminarUsuario(){
 		},
 		complete: function(jqXHR,estado){
                     console.log(estado);
-                    rellenarSelectUsuario();                     
+                    rellenarSelectUsuario();
 		},
 		timeout:1000,
-                
+
 	})
 }
 
@@ -109,13 +102,13 @@ function eliminarUsuario(){
 
 
 function rellenarUsuario(){
-    
+
     $.ajax({
-                url: 'rellenarModf.php',
+                url: 'funciones/rellenarModf.php',
 		type: 'post',
 		data: $('#formularioRellenoModificar').serialize(),
 		success: function(respRelleno){
-                    $('#datosMod').html(respRelleno);                    
+                    $('#datosMod').html(respRelleno);
                     console.log(respRelleno);
 		},
 		error: function(jqXHR,estado,error){
@@ -124,19 +117,19 @@ function rellenarUsuario(){
 		},
 		complete: function(jqXHR,estado){
                     console.log(estado);
-                    
+
 		},
 		timeout:1000
 	})
 }
 
 function rellenarSelectUsuario(){
-    
+
     $.ajax({
-                url: 'rellenarSelectU.php',
+                url: 'funciones/rellenarSelectU.php',
 		type: 'post',
 		success: function(respSelect){
-                    $('.selectU').html(respSelect);                    
+                    $('.selectU').html(respSelect);
                     console.log(respSelect);
 		},
 		error: function(jqXHR,estado,error){
@@ -145,7 +138,7 @@ function rellenarSelectUsuario(){
 		},
 		complete: function(jqXHR,estado){
                     console.log(estado);
-                    
+
 		},
 		timeout:1000
 	})
@@ -153,12 +146,12 @@ function rellenarSelectUsuario(){
 
 
 function rellenarSelectTutoriales(){
-    
+
     $.ajax({
-                url: 'rellenarSelectT.php',
+                url: 'funciones/rellenarSelectT.php',
 		type: 'post',
 		success: function(respSelect){
-                    $('.selectT').html(respSelect);                    
+                    $('.selectT').html(respSelect);
                     console.log(respSelect);
 		},
 		error: function(jqXHR,estado,error){
@@ -167,7 +160,7 @@ function rellenarSelectTutoriales(){
 		},
 		complete: function(jqXHR,estado){
                     console.log(estado);
-                    
+
 		},
 		timeout:1000
 	})
@@ -177,7 +170,7 @@ function rellenarSelectTutoriales(){
 
 
 function redibujar(){
-    
+
 
     $('#sendAgregarUsuario').on('click', function(e) {
 
@@ -202,53 +195,53 @@ function redibujar(){
     $('#formularioRellenoModificar').on('click', '#rellenarUsuario', function(ex) {
         $('#datosNuevos').css("display", "block");
         $('#datosMod').css("display", "block");
-        
+
         ex.preventDefault();
         rellenarUsuario();
-    });  
-    
-    
-    $('#formularioEliminarUsuario').on('click', '#sendEliminarUsuario', function(exa) {  
+    });
+
+
+    $('#formularioEliminarUsuario').on('click', '#sendEliminarUsuario', function(exa) {
         exa.preventDefault();
-        
+
         if(confirm("¿Estas seguro de que quieres eliminar este usuario")){
             eliminarUsuario();
         }
-        
-    }); 
-    
+
+    });
+
     $('#sendAgregarTutorial').on('click', function(ea) {
 
         ea.preventDefault();
         insertarTutorial();
         $('#agregarRuta').val('');
         $('#agregarTitulo').val('');
-        
-    });  
-    
-    
-    $('#formularioEliminarTutorial').on('click', '#sendEliminarTutorial', function(exa) {  
+
+    });
+
+
+    $('#formularioEliminarTutorial').on('click', '#sendEliminarTutorial', function(exa) {
         exa.preventDefault();
-        
+
         if(confirm("¿Estas seguro de que quieres eliminar este tutorial")){
             eliminarTutorial();
         }
-        
-    }); 
-    
-    
-    
-   
+
+    });
+
+
+
+
 }
 
 function insertarTutorial(){
-    
+
     $.ajax({
-                url: 'agregarTutorial.php',
+                url: 'funciones/agregarTutorial.php',
 		type: 'post',
 		data: $('#formularioAgregarTutorial').serialize(),
 		success: function(respTutorial){
-                    $('#cuadroTutoriales').html(respTutorial);                    
+                    $('#cuadroTutoriales').html(respTutorial);
                     console.log(respTutorial);
 		},
 		error: function(jqXHR,estado,error){
@@ -256,22 +249,22 @@ function insertarTutorial(){
                     console.log(error);
 		},
 		complete: function(jqXHR,estado){
-                    console.log(estado);                    
+                    console.log(estado);
                     rellenarSelectTutoriales();
 		},
 		timeout:1000,
-                
+
 	})
 }
 
 function eliminarTutorial(){
-    
+
     $.ajax({
-                url: 'eliminarTutorial.php',
+                url: 'funciones/eliminarTutorial.php',
 		type: 'post',
 		data: $('#formularioEliminarTutorial').serialize(),
 		success: function(respTuto){
-                    $('#cuadroTutoriales').html(respTuto);                    
+                    $('#cuadroTutoriales').html(respTuto);
                     console.log(respTuto);
 		},
 		error: function(jqXHR,estado,error){
@@ -280,9 +273,9 @@ function eliminarTutorial(){
 		},
 		complete: function(jqXHR,estado){
                     console.log(estado);
-                    rellenarSelectTutoriales();                     
+                    rellenarSelectTutoriales();
 		},
 		timeout:1000,
-                
+
 	})
 }
