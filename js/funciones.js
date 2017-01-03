@@ -2,22 +2,22 @@
 
 
 $(document).on("ready",function(){
-    
-     
-    
+
+
+
     $('#formulario').on('submit', function(e){
-				
+
         e.preventDefault();
         recargarMuro();
-	
-    });        
-    
-    
+
+    });
+
+
     $('#formularioChat').on('submit', function(ex){
-				
+
         ex.preventDefault();
-	insertarChat();          
-	
+	insertarChat();
+
     });
 
 
@@ -48,19 +48,19 @@ function recargarMuro(){
 		},
 		complete: function(jqXHR,estado){
                     console.log(estado);
-                    
+
                     recargarFormulario();
 		},
 		timeout:1000
 	})
-    
+
 }
 
-function insertarChat(){ 
-    
+function insertarChat(){
+
     var petChat = $('#formularioChat').attr('action');
     var metChat = $('#formularioChat').attr('method');
-    
+
     $.ajax({
             beforeSend: function(){
             $('#status').html("Cargando...");
@@ -87,10 +87,10 @@ function insertarChat(){
 
 
 function cargarChat(){
-    
+
     $.ajax({
-            
-                url: 'recarga.php',
+
+                url: 'funciones/recarga.php',
 		type: 'post',
 		success: function(respChat){
                     $('#respuestaChat').html(respChat);
@@ -106,14 +106,14 @@ function cargarChat(){
 		},
 		timeout:1000
 	});
-    
+
 }
 
 function cargarMuro(){
-    
+
     $.ajax({
-            
-                url: 'recargaMuro.php',
+
+                url: 'funciones/recargaMuro.php',
 		type: 'post',
 		success: function(respMuro){
                     $('#respuestasMuro').html(respMuro);
@@ -128,19 +128,19 @@ function cargarMuro(){
 		},
 		timeout:1000
 	});
-    
+
 }
 
 
 function insertarRespuesta(formulario){
-    
+
     $.ajax({
-            
-                url: 'respuestas.php',
+
+                url: 'funciones/respuestas.php',
 		type: 'post',
                 data: $(formulario).serialize(),
 		success: function(respuestas){
-                    $('#respuestasMuro').html(respuestas);                    
+                    $('#respuestasMuro').html(respuestas);
                     console.log(respuestas);
 		},
 		error: function(jqXHR,estado,error){
@@ -153,21 +153,18 @@ function insertarRespuesta(formulario){
 		},
 		timeout:1000
 	})
-        
+
 }
 
 function recargarFormulario(){
-        
+
   $('.formularioRespuesta').on('submit', function(es){
-            
-    var formulario = '#' + $(this).attr('id');    
+
+    var formulario = '#' + $(this).attr('id');
     es.preventDefault();
     insertarRespuesta(formulario);
-   
+
   });
-    
-    
+
+
 }
-
-
-

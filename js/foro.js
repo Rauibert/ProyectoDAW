@@ -2,36 +2,36 @@
 
 
 $(document).on("ready",function(){
-    
+
     $('#foro').on('click','#sendForo', function(ex){
-				
+
         ex.preventDefault();
-	insertarForo();          
-	
+	insertarForo();
+
     });
-    
+
      $('#respforo').on('click','#sendRespuestaForo', function(ex){
-				
+
         ex.preventDefault();
-	insertarRespuestaForo();          
-	
+	insertarRespuestaForo();
+
     });
-    
-    
-    
-    
-    
+
+
+
+
+
 });
 
 
 function insertarForo(){
-    
+
     $.ajax({
-                url: 'temasForo.php',
+                url: 'funciones/temasForo.php',
 		type: 'post',
 		data: $('#formularioForo').serialize(),
 		success: function(respForo){
-                    $('#titulosforo').html(respForo);                    
+                    $('#titulosforo').html(respForo);
                     console.log(respForo);
 		},
 		error: function(jqXHR,estado,error){
@@ -44,19 +44,19 @@ function insertarForo(){
                     $('#mensajeForo').val("");
 		},
 		timeout:1000,
-                
+
 	})
 }
 
 
 function insertarRespuestaForo(){
-    
+
     $.ajax({
-                url: 'respuestasForo.php',
+                url: 'funciones/respuestasForo.php',
 		type: 'post',
 		data: $('#formularioRForo').serialize(),
 		success: function(respForo){
-                    $('#respuestasforo').html(respForo);                    
+                    $('#respuestasforo').html(respForo);
                     console.log(respForo);
 		},
 		error: function(jqXHR,estado,error){
@@ -70,4 +70,3 @@ function insertarRespuestaForo(){
 		timeout:1000
 	})
 }
-
