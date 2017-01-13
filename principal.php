@@ -51,7 +51,7 @@
         <div id="muro">
             <span class="seccion"><center><h2>  MURO  </h2></center></span>
 
-            <form action="muro.php" name="formulario" id="formulario" method="POST">
+            <form action="funciones/muro.php" name="formulario" id="formulario" method="POST">
                 <textarea name="mensajeMuro" id="mensajeMuro" cols="100" rows="5"></textarea>
                 <input type="hidden" name="usuarioMuro" value="<?php if(isset($_SESSION['administrador'])){echo $_SESSION['administrador'];}else if(isset($_SESSION['usuario'])){echo $_SESSION['usuario'];} ?>"</input>
                 <input type="submit" name="sendMuro" value="Enviar"/><br/>
@@ -72,7 +72,7 @@
                 <?php BD::rellenarChat();?>
             </div>
 
-            <form action="chat.php" id="formularioChat"  method="POST">
+            <form action="funciones/chat.php" id="formularioChat"  method="POST">
                 <textarea name="respuestaC" id="respuestaC" rows="5"></textarea><br/>
                 <input type="submit" name="enviarRespChat" id="enviarRespChat" value="Enviar"/>
             </form>
